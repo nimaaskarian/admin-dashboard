@@ -5,6 +5,8 @@ export const StyledApp = styled.div`
   width: 100vw;
   height: 100vh;
   color: ${(props) => props.theme.colors.foreground};
+  fill: ${(props) => props.theme.colors.foreground};
+
   background-color: ${(props) => props.theme.colors.background};
   padding: 1rem;
   display: grid;
@@ -13,6 +15,11 @@ export const StyledApp = styled.div`
   grid-template-rows: 60px 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   overflow: hidden;
+  &,
+  & * {
+    transition: background-color 100ms ease-in, color 100ms ease-in,
+      border-color 100ms ease-in, fill 100ms ease-in;
+  }
   @media only screen and (max-width: 756px) {
     height: fit-content;
     display: flex;

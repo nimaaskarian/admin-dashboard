@@ -1,6 +1,5 @@
 import FloatingCard from "blocks/FloatingCard";
 import React from "react";
-import Theme from "Theme";
 import { StyledApp } from "./style";
 
 import "chart.js/auto";
@@ -9,9 +8,16 @@ import NameBar from "blocks/NameBar";
 import Image from "assets/128.jpg";
 import Post from "components/Post";
 import { useTheme } from "styled-components";
+import useThemeName from "hooks/useThemeName";
+
+import { ReactComponent as Moon } from "assets/moon.svg";
+import { ReactComponent as Sun } from "assets/sun.svg";
+import { setToLocalStorage } from "services/localStorage";
 
 const App = () => {
   const theme = useTheme();
+  const currentThemeName = useThemeName();
+
   const chartLabels = [
     "بهمن ۱۴۰۰",
     "اسفند ۱۴۰۰",
@@ -68,6 +74,16 @@ const App = () => {
     <StyledApp>
       <FloatingCard area="navbar">
         <NameBar>
+          <NameBar.ToggleThemeButton
+            onClick={() =>
+              setToLocalStorage(
+                "theme",
+                currentThemeName === "light" ? "dark" : "light"
+              )
+            }
+          >
+            {currentThemeName === "light" ? <Sun /> : <Moon />}
+          </NameBar.ToggleThemeButton>
           <NameBar.Name>نیما عسکریان</NameBar.Name>
           <NameBar.Image src={Image} />
         </NameBar>
