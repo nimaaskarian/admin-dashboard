@@ -3,59 +3,117 @@ import React from "react";
 import Theme from "Theme";
 import { StyledApp } from "./style";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  LineController,
-} from "chart.js";
-import { Chart } from "react-chartjs-2";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  LineController,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
+import "chart.js/auto";
+import { Bar, Chart, Doughnut } from "react-chartjs-2";
+import NameBar from "blocks/NameBar";
+import Image from "assets/128.jpg";
 
 const App = () => {
-  const labels = ["January", "February", "March", "April", "May", "June"];
+  const chartLabels = [
+    "بهمن ۱۴۰۰",
+    "اسفند ۱۴۰۰",
+    "فروردین",
+    "اردیبهشت",
+    "خرداد",
+    "تیر",
+    "مرداد",
+    "شهریور",
+    "مهر",
+  ];
   const chartData = {
-    labels: labels,
+    labels: chartLabels,
     datasets: [
       {
-        label: "My First dataset",
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgb(255, 99, 132)",
-        data: [0, 10, 5, 2, 20, 30, 45],
+        label: "تعداد بازدید ها",
+        backgroundColor: "#fa7a92",
+        borderColor: "#fa7a92",
+        data: [0, 15, 5, 2, 20, 30, 45, 28, 50],
+      },
+    ],
+  };
+  const barLabels = ["اینستاگرام", "یوتیوب", "وبسایت", "گوگل"];
+  const barData = {
+    labels: barLabels,
+    datasets: [
+      {
+        label: "بازدید های این ماه",
+        backgroundColor: "#7ac7fa",
+        borderColor: "#7ac7fa",
+        data: [0, 22, 13, 15],
       },
     ],
   };
   return (
     <Theme>
       <StyledApp>
-        <FloatingCard area="navbar"></FloatingCard>
-        <FloatingCard area="first">
-          <Chart type="line" data={chartData} />
+        <FloatingCard area="navbar">
+          <NameBar>
+            <NameBar.Name>نیما عسکریان</NameBar.Name>
+            <NameBar.Image src={Image} />
+          </NameBar>
         </FloatingCard>
-        <FloatingCard area="second"></FloatingCard>
-        <FloatingCard area="third"></FloatingCard>
+        <FloatingCard area="first"></FloatingCard>
+        <FloatingCard area="second">
+          <div>
+            <FloatingCard.SmallHeader>بهترین پلتفرم</FloatingCard.SmallHeader>
+
+            <FloatingCard.MainHeader>یوتیوب!</FloatingCard.MainHeader>
+
+            <FloatingCard.SmallText>
+              <FloatingCard.HighlightedText>۷</FloatingCard.HighlightedText> تا
+              بیشتر از گوگل
+            </FloatingCard.SmallText>
+          </div>
+
+          <div>
+            <Bar
+              type="line"
+              data={barData}
+              options={{
+                maintainAspectRatio: false,
+                font: {
+                  family: "Iran Sans",
+                },
+                animations: {
+                  tension: {
+                    duration: 1000,
+                    easing: "linear",
+                    from: 1,
+                    to: 0,
+                  },
+                },
+              }}
+            />
+          </div>
+        </FloatingCard>
+        <FloatingCard area="third">
+          <div>
+            <FloatingCard.SmallHeader>تعداد بازدید ها</FloatingCard.SmallHeader>
+
+            <FloatingCard.MainHeader>۵۰!</FloatingCard.MainHeader>
+
+            <FloatingCard.SmallText>
+              <FloatingCard.HighlightedText>۱۲</FloatingCard.HighlightedText> تا
+              بیشتر از ماه پیش
+            </FloatingCard.SmallText>
+          </div>
+          <div>
+            <Chart
+              type="line"
+              data={chartData}
+              options={{
+                tension: 0.5,
+                maintainAspectRatio: false,
+                font: {
+                  family: "Iran Sans",
+                },
+              }}
+            />
+          </div>
+        </FloatingCard>
         <FloatingCard area="forth"></FloatingCard>
         <FloatingCard area="fifth"></FloatingCard>
         <FloatingCard area="sixth"></FloatingCard>
-        <FloatingCard area="seventh"></FloatingCard>
-        <FloatingCard area="eighth"></FloatingCard>
       </StyledApp>
     </Theme>
   );
