@@ -28,6 +28,7 @@ export const StyledApp = styled.div`
       min-width: initial;
       min-height: initial;
     }
+    width: 100%;
   }
   & * {
     direction: ${(props) => props.theme.direction || "ltr"};
