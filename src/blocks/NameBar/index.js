@@ -8,6 +8,7 @@ const NameBar = styled.div`
 const Image = styled.img`
   height: 100%;
   border-radius: 100px;
+  max-height: 32px;
 `;
 const Name = styled.h4`
   margin: 0;

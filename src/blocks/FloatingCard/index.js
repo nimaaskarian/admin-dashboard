@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const FloatingCard = styled.div`
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -20,9 +21,9 @@ const FloatingCard = styled.div`
 const MainHeader = styled.h1`
   margin: 0;
 `;
-const SmallHeader = styled.h4`
+const SmallHeader = styled.h3`
   margin: 0;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 `;
 const SmallText = styled.span`
   font-size: 14px;

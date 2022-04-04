@@ -7,8 +7,11 @@ import "chart.js/auto";
 import { Bar, Chart, Doughnut } from "react-chartjs-2";
 import NameBar from "blocks/NameBar";
 import Image from "assets/128.jpg";
+import Post from "components/Post";
+import { useTheme } from "styled-components";
 
 const App = () => {
+  const theme = useTheme();
   const chartLabels = [
     "بهمن ۱۴۰۰",
     "اسفند ۱۴۰۰",
@@ -25,97 +28,157 @@ const App = () => {
     datasets: [
       {
         label: "تعداد بازدید ها",
-        backgroundColor: "#fa7a92",
-        borderColor: "#fa7a92",
+        backgroundColor: theme.colors.highlighted,
+        borderColor: theme.colors.foreground,
         data: [0, 15, 5, 2, 20, 30, 45, 28, 50],
       },
     ],
   };
-  const barLabels = ["اینستاگرام", "یوتیوب", "وبسایت", "گوگل"];
-  const barData = {
-    labels: barLabels,
+  const doughnutLabels = ["اینستاگرام", "یوتیوب", "وبسایت", "گوگل"];
+  const doughnutData = {
+    labels: doughnutLabels,
     datasets: [
       {
         label: "بازدید های این ماه",
-        backgroundColor: "#7ac7fa",
-        borderColor: "#7ac7fa",
+        backgroundColor: ["#de2479", "red", "#7ac7fa", "#f3b605"],
+        borderColor: theme.colors.foreground,
         data: [0, 22, 13, 15],
       },
     ],
   };
+  const barDataSetData = [1.6, 3.3, 7.2, 6.4, 7.8, 8.8, 4.1, 6.9, 9.5];
+  const barData = {
+    labels: chartLabels,
+    datasets: [
+      {
+        label: "امتیاز سئو",
+        data: barDataSetData,
+        borderColor: theme.colors.foreground,
+
+        backgroundColor: barDataSetData.map((e) => {
+          if (e >= 8) return "#7dff63";
+          if (e >= 5) return "#ffea63";
+          if (e >= 2) return "#ffc163";
+          return "#ff6363";
+        }),
+      },
+    ],
+  };
   return (
-    <Theme>
-      <StyledApp>
-        <FloatingCard area="navbar">
-          <NameBar>
-            <NameBar.Name>نیما عسکریان</NameBar.Name>
-            <NameBar.Image src={Image} />
-          </NameBar>
-        </FloatingCard>
-        <FloatingCard area="first"></FloatingCard>
-        <FloatingCard area="second">
-          <div>
-            <FloatingCard.SmallHeader>بهترین پلتفرم</FloatingCard.SmallHeader>
+    <StyledApp>
+      <FloatingCard area="navbar">
+        <NameBar>
+          <NameBar.Name>نیما عسکریان</NameBar.Name>
+          <NameBar.Image src={Image} />
+        </NameBar>
+      </FloatingCard>
+      <FloatingCard area="first">
+        <div>
+          <FloatingCard.SmallHeader>امتیاز سئو</FloatingCard.SmallHeader>
+          <FloatingCard.MainHeader>۹.۵/۱۰!</FloatingCard.MainHeader>
+          <FloatingCard.HighlightedText>۲.۶</FloatingCard.HighlightedText>{" "}
+          <FloatingCard.SmallText>
+            امتیاز بیشتر از ماه پیش
+          </FloatingCard.SmallText>
+        </div>
+        <div>
+          <Bar data={barData}></Bar>
+        </div>
+      </FloatingCard>
+      <FloatingCard area="second">
+        <div>
+          <FloatingCard.SmallHeader>بهترین پلتفرم</FloatingCard.SmallHeader>
 
-            <FloatingCard.MainHeader>یوتیوب!</FloatingCard.MainHeader>
+          <FloatingCard.MainHeader>یوتیوب!</FloatingCard.MainHeader>
 
-            <FloatingCard.SmallText>
-              <FloatingCard.HighlightedText>۷</FloatingCard.HighlightedText> تا
-              بیشتر از گوگل
-            </FloatingCard.SmallText>
-          </div>
+          <FloatingCard.SmallText>
+            <FloatingCard.HighlightedText>۷</FloatingCard.HighlightedText> تا
+            بازدید بیشتر از گوگل
+          </FloatingCard.SmallText>
+        </div>
 
-          <div>
-            <Bar
-              type="line"
-              data={barData}
-              options={{
-                maintainAspectRatio: false,
-                font: {
-                  family: "Iran Sans",
+        <div>
+          <Doughnut
+            type="line"
+            data={doughnutData}
+            options={{
+              maintainAspectRatio: false,
+              font: {
+                family: "Iran Sans",
+              },
+              animations: {
+                tension: {
+                  duration: 1000,
+                  easing: "linear",
+                  from: 1,
+                  to: 0,
                 },
-                animations: {
-                  tension: {
-                    duration: 1000,
-                    easing: "linear",
-                    from: 1,
-                    to: 0,
-                  },
-                },
-              }}
-            />
-          </div>
-        </FloatingCard>
-        <FloatingCard area="third">
-          <div>
-            <FloatingCard.SmallHeader>تعداد بازدید ها</FloatingCard.SmallHeader>
+              },
+            }}
+          />
+        </div>
+      </FloatingCard>
+      <FloatingCard area="third">
+        <div>
+          <FloatingCard.SmallHeader>تعداد بازدید ها</FloatingCard.SmallHeader>
 
-            <FloatingCard.MainHeader>۵۰!</FloatingCard.MainHeader>
+          <FloatingCard.MainHeader>۵۰!</FloatingCard.MainHeader>
 
-            <FloatingCard.SmallText>
-              <FloatingCard.HighlightedText>۱۲</FloatingCard.HighlightedText> تا
-              بیشتر از ماه پیش
-            </FloatingCard.SmallText>
-          </div>
+          <FloatingCard.SmallText>
+            <FloatingCard.HighlightedText>۱۲</FloatingCard.HighlightedText> تا
+            بیشتر از ماه پیش
+          </FloatingCard.SmallText>
+        </div>
+        <div>
+          <Chart
+            type="line"
+            data={chartData}
+            options={{
+              tension: 0.5,
+              maintainAspectRatio: false,
+              font: {
+                family: "Iran Sans",
+              },
+            }}
+          />
+        </div>
+      </FloatingCard>
+      <FloatingCard area="forth">
+        <div>
+          <FloatingCard.SmallHeader>بهترین پست</FloatingCard.SmallHeader>
+          <FloatingCard.MainHeader>
+            ساخت اپلیکیشن SSR با ریئکت!
+          </FloatingCard.MainHeader>
+          <FloatingCard.SmallText>
+            <FloatingCard.HighlightedText>۱۱</FloatingCard.HighlightedText> تا
+            بیشتر از ساخت CMS با جنگو
+          </FloatingCard.SmallText>
+        </div>
+        <div>
           <div>
-            <Chart
-              type="line"
-              data={chartData}
-              options={{
-                tension: 0.5,
-                maintainAspectRatio: false,
-                font: {
-                  family: "Iran Sans",
-                },
-              }}
-            />
+            <Post title="ساخت اپلیکیشن SSR با ریئکت" likes="۱۵" viewers="۲۶" />
+            <Post title="ساخت CMS با جنگو" likes="۴" viewers="۱۵" />
+            <Post title="شخصی سازی رام گوشی اندرویدی" likes="۲" viewers="۹" />
           </div>
-        </FloatingCard>
-        <FloatingCard area="forth"></FloatingCard>
-        <FloatingCard area="fifth"></FloatingCard>
-        <FloatingCard area="sixth"></FloatingCard>
-      </StyledApp>
-    </Theme>
+        </div>
+      </FloatingCard>
+      <FloatingCard area="fifth">
+        <div>
+          <FloatingCard.SmallHeader>
+            من از این جای خالی که نباشی خالی میمونه میترسم
+          </FloatingCard.SmallHeader>
+          <FloatingCard.MainHeader>میترسم :(</FloatingCard.MainHeader>
+        </div>
+      </FloatingCard>
+      <FloatingCard area="sixth">
+        <div>
+          <FloatingCard.SmallHeader>
+            من از این جای خالی که نباشی خالی میمونه میترسم
+          </FloatingCard.SmallHeader>
+          <FloatingCard.MainHeader>میترسم :(</FloatingCard.MainHeader>
+        </div>
+      </FloatingCard>
+    </StyledApp>
   );
 };
 

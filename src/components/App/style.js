@@ -13,6 +13,15 @@ export const StyledApp = styled.div`
   grid-template-rows: 60px 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   overflow: hidden;
+  @media only screen and (max-width: 756px) {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    & > * {
+      min-width: initial;
+      min-height: initial;
+    }
+  }
   & * {
     direction: ${(props) => props.theme.direction || "ltr"};
   }
