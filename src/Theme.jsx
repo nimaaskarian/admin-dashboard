@@ -33,7 +33,9 @@ const Theme = ({ children }) => {
   const currentThemeName = useThemeName();
 
   return (
-    <ThemeProvider theme={themes[currentThemeName]}>{children}</ThemeProvider>
+    <ThemeProvider theme={themes[currentThemeName] || themes.light}>
+      {children}
+    </ThemeProvider>
   );
 };
 
