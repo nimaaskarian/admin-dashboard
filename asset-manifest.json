@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "./static/js/main.25255600.js",
+    "main.js": "./static/js/main.90ded1d5.js",
     "static/media/IRANSansWeb_Light.woff": "./static/media/IRANSansWeb_Light.c155096a5b1dc2a8557b.woff",
     "static/media/128.jpg": "./static/media/128.0ed6626d3b2d6dda02e8.jpg",
     "static/media/chart-mixed.svg": "./static/media/chart-mixed.331409787707a6c42c9ccf5c4b36af75.svg",
@@ -10,6 +10,6 @@
     "index.html": "./index.html"
   },
   "entrypoints": [
-    "static/js/main.25255600.js"
+    "static/js/main.90ded1d5.js"
   ]
 }
