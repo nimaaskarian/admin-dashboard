@@ -35,6 +35,7 @@ const App = () => {
       {
         label: "تعداد بازدید ها",
         backgroundColor: theme.colors.highlighted,
+
         borderColor: theme.colors.foreground,
         data: [0, 15, 5, 2, 20, 30, 45, 28, 50],
       },
@@ -122,14 +123,6 @@ const App = () => {
               font: {
                 family: "Iran Sans",
               },
-              animations: {
-                tension: {
-                  duration: 1000,
-                  easing: "linear",
-                  from: 1,
-                  to: 0,
-                },
-              },
             }}
           />
         </div>
@@ -150,10 +143,22 @@ const App = () => {
             type="line"
             data={chartData}
             options={{
-              tension: 0.5,
               maintainAspectRatio: false,
               font: {
                 family: "Iran Sans",
+              },
+              fill: true,
+              radius: 3,
+              hitRadius: 30,
+              hoverRadius: 5,
+              animations: {
+                tension: {
+                  delay: 800,
+                  duration: 1500,
+                  easing: "easeOutBounce",
+                  from: 0,
+                  to: 0.4,
+                },
               },
             }}
           />

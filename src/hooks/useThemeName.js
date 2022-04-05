@@ -8,7 +8,6 @@ const useThemeName = () => {
   useEffect(() => {
     const checkTheme = () => {
       const lsTheme = getFromLocalStorage("theme");
-      console.log("change", lsTheme);
       if (lsTheme) setCurrentThemeName(lsTheme);
     };
 

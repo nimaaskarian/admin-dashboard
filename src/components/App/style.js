@@ -18,7 +18,7 @@ export const StyledApp = styled.div`
   &,
   & * {
     transition: background-color 100ms ease-in, color 100ms ease-in,
-      border-color 100ms ease-in, fill 100ms ease-in;
+      border-color 100ms ease-in, fill 100ms ease-in, box-shadow 100ms ease-in;
   }
   @media only screen and (max-width: 756px) {
     height: fit-content;
