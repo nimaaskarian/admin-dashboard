@@ -155,7 +155,7 @@ const App = () => {
                 tension: {
                   delay: 800,
                   duration: 1500,
-                  easing: "easeOutBounce",
+                  easing: "easeOutCubic",
                   from: 0,
                   to: 0.4,
                 },
